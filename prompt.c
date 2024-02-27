@@ -1,17 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <sys/types.h>
+#include <string.h>
+#include <unistd.h>
+
 
 int main()
 {
 	char *line = NULL;
-	size_t len;
-
-	len = 0;
-	
+	size_t len = 0;
+	char *argv[2] = {NULL, NULL};
+	ssize_t read;
 	while (1)
 	{
-		printf("$");
-		ssize_t read = getline(&line, &len, stdin);
+		printf("$ ");
+		
+		read = getline(&line, &len, stdin);
 		
 		if (read == -1)
 		{
@@ -26,10 +31,21 @@ int main()
 				break;
 			}
 		}
-		if (exc
+		if (read > 0 && line[read - 1] == '\n')
+		{
+			line[read - 1] = '\0';
+		}
+		if (line[0] == '\0')
+		{
+			continue;
+		}
+		argv[0] = line;
 
+		if (execve(argv[0], argv, NULL) == -1)
+			perror("Error: ");
+		free(line);
+		line = NULL;
+		len = 0;
 	}
-	
-	free(line);
 	return (0);
 }
