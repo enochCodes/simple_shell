@@ -1,23 +1,23 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
-#include <sys/types.h>
-#include <string.h>
-#include <unistd.h>
+#include "shell.h"
 
+/**
+ * getlinee - get the line
+ * @line: the line
+ * Return: return 0
+ */
 
-int main()
+int getlinee(char *line, size_t len)
 {
-	char *line = NULL;
-	size_t len = 0;
+	line = NULL;
+	len = 0;
 	char *argv[2] = {NULL, NULL};
 	ssize_t read;
+
 	while (1)
 	{
 		printf("$ ");
-		
 		read = getline(&line, &len, stdin);
-		
+
 		if (read == -1)
 		{
 			if (feof(stdin))
