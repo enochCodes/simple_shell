@@ -12,7 +12,7 @@ int main(void)
 	input = NULL;
 	while (1)
 	{
-		printprompt();
+		print_prompt();
 		input = readinput();
 
 		if (input == NULL)
