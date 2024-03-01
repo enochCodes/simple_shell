@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef SHELL_H_
+#define SHELL_H_
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -10,10 +10,10 @@
 #include <stdlib.h>
 #define MAX_ARGS 100
 #include <sys/stat.h>
-char *create_filepath(const char *token, const char *args);
-size_t tokenizer(char *input, char *delim);
-char **word_list(char *input, char *delim);
-char **append(char **args, char *token);
+char *create_path(const char *token, const char *args);
+size_t token(char *input, char *delim);
+char **wordlist(char *input, char *delim);
+char **appended(char **args, char *token);
 void teborne(char **args);
 void exiting(char **args, char *input);
 void envir(char **args);

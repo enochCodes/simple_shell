@@ -20,7 +20,7 @@ int main(void)
 			break;
 			write(STDOUT_FILENO, "\n", 1);
 		}
-		args = word_list(input, delim);
+		args = wordlist(input, delim);
 		if (args != NULL && args[0] != NULL)
 		{
 			if (strcmp(args[0], "exit") == 0)
